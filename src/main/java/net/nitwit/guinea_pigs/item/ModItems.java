@@ -9,10 +9,12 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.nitwit.guinea_pigs.GuineaPigs;
+import net.nitwit.guinea_pigs.item.custom.DroppingsItem;
 
 public class ModItems {
-
-    public static final Item DROPPINGS = registerItem("droppings", new Item(new Item.Settings()));
+    public static final Item DROPPINGS = registerItem("droppings", new DroppingsItem(new Item.Settings()));
+    public static final Item EMPTY_CRATE = registerItem("empty_crate", new Item(new Item.Settings()));
+    public static final Item FULL_CRATE = registerItem("full_crate", new Item(new Item.Settings()));
     //public static final Item GUINEA_PIG_SPAWN_EGG = registerItem("guinea_pig_spawn_egg", new SpawnEggItem())
 
     private static Item registerItem(String name, Item item) {
@@ -24,6 +26,8 @@ public class ModItems {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.add(DROPPINGS);
+            entries.add(EMPTY_CRATE);
+            entries.add(FULL_CRATE);
         });
     }
 }

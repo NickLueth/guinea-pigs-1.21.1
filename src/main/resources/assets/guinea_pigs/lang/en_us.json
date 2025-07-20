@@ -1,3 +1,5 @@
 {
-  "item.guinea_pigs.droppings": "Droppings"
+  "item.guinea_pigs.droppings": "Droppings",
+  "item.guinea_pigs.empty_crate": "Empty Crate",
+  "item.guinea_pigs.full_crate": "Occupied Crate"
 }
