@@ -9,9 +9,8 @@ Bring adorable, curious guinea pigs into your Minecraft world, complete with new
 ## 🆕 What's New
 
 - 🔄 **Updated from 1.20.1 Forge → 1.21.1 Fabric**
-- 📦 **Functional guinea pig crates** for storing food, hay, or toys
+- 📦 **Functional guinea pig crates** for storing and transporting guinea pigs
 - 🛠️ Improved compatibility with modern Fabric-based modpacks
-- 🐾 Infrastructure laid for future expansions
 
 ---
 
@@ -46,15 +45,13 @@ Bring adorable, curious guinea pigs into your Minecraft world, complete with new
 - ✅ Functional guinea pig crates
 - 🐹 Additional guinea pig breeds and patterns
 - 🎽 Cosmetic accessories like bows, hats, and sweaters
-- 🧠 Smarter AI behaviors and interactions
-- 🎶 New ambient sounds and squeaks
-- 🔧 Custom config options for gameplay tuning
+- 🎶 New sounds and squeaks
 
 ---
 
 ## 💬 Feedback & Contributions
 
-Got ideas? Found a bug? Want to suggest a guinea pig name?  
+Got ideas? Found a bug?
 Open an [issue](#), start a [discussion](#), or reach out — your input is always welcome!
 
 ---
@@ -69,4 +66,4 @@ Original assets, concept, and designs credited to **Fuths**, reused here with re
 ## 🙌 Credits
 
 - **Original Creator:** [Fuths](https://www.curseforge.com/members/fuths)
-- **Fabric Port & Enhancements:** [YourNameHere]
+- **Fabric Port & Enhancements:** [Nick Lueth](https://github.com/NickLueth)
