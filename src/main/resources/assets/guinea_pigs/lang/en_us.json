@@ -1,5 +1,8 @@
 {
   "item.guinea_pigs.droppings": "Droppings",
   "item.guinea_pigs.empty_crate": "Empty Crate",
-  "item.guinea_pigs.full_crate": "Occupied Crate"
+  "item.guinea_pigs.full_crate": "Occupied Crate",
+  "item.guinea_pigs.guinea_pig_spawn_egg": "Guinea Pig Spawn Egg",
+
+  "entity.guinea_pigs.guinea_pig": "Guinea Pig"
 }
