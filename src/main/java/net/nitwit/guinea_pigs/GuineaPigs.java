@@ -23,4 +23,4 @@ public class GuineaPigs implements ModInitializer {
 }
 
 
-// REMEMBER Ctrl + H
+// REMEMBER Ctrl + H and Shift * 2

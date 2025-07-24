@@ -25,5 +25,8 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.GUINEA_PIG_SPAWN_EGG,
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.DROPPINGS, Models.GENERATED);
+        itemModelGenerator.register(ModItems.EMPTY_CARRIER, Models.GENERATED);
+        itemModelGenerator.register(ModItems.FULL_CARRIER, Models.GENERATED);
     }
 }

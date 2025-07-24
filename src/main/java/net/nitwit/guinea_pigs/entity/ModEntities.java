@@ -12,7 +12,7 @@ public class ModEntities {
     public static final EntityType<GuineaPigEntity> GUINEA_PIG = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(GuineaPigs.MOD_ID, "guinea_pig"),
             EntityType.Builder.create(GuineaPigEntity::new, SpawnGroup.CREATURE)
-                    .dimensions(.5f, 1.0f).build());
+                    .dimensions(.6f, .4f).build());
 
 
     public static void registerModEntities() {

@@ -1,4 +1,4 @@
-# Guinea Pigs Mod (Unfinished) - Fabric Edition (1.21.1)
+# Guinea Pigs Mod (In Development) - Fabric Edition (1.21.1)
 
 Welcome to **Guinea Pigs Mod**, a continuation and reimagining of the original **Guinea Pig Variety** mod — now updated for **Minecraft 1.21.1** and running on the **Fabric** mod loader!
 
