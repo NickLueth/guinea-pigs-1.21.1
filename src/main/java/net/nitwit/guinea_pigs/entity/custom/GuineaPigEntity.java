@@ -15,12 +15,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import net.nitwit.guinea_pigs.entity.ModEntities;
+import net.nitwit.guinea_pigs.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 
 
 public class GuineaPigEntity extends AnimalEntity{
+    public int poopTime = this.random.nextInt(2000) + 4000;
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
@@ -70,6 +74,12 @@ public class GuineaPigEntity extends AnimalEntity{
         super.tick();
         if (this.getWorld().isClient()) {
             this.setupAnimationStates();
+        }
+        if (!this.getWorld().isClient && this.isAlive() && --this.poopTime <= 0) {
+            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            this.dropItem(ModItems.DROPPINGS);
+            this.emitGameEvent(GameEvent.ENTITY_PLACE);
+            this.poopTime = this.random.nextInt(2000) + 4000;
         }
     }
 
