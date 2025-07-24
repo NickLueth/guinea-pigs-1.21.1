@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "guinea_pigs:item/full_crate"
+    "layer0": "guinea_pigs:item/empty_carrier"
   }
 }

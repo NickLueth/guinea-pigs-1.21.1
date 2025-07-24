@@ -13,8 +13,8 @@ import net.nitwit.guinea_pigs.item.custom.DroppingsItem;
 
 public class ModItems {
     public static final Item DROPPINGS = registerItem("droppings", new DroppingsItem(new Item.Settings()));
-    public static final Item EMPTY_CRATE = registerItem("empty_crate", new Item(new Item.Settings()));
-    public static final Item FULL_CRATE = registerItem("full_crate", new Item(new Item.Settings()));
+    public static final Item EMPTY_CARRIER = registerItem("empty_carrier", new Item(new Item.Settings()));
+    public static final Item FULL_CARRIER = registerItem("full_carrier", new Item(new Item.Settings()));
     public static final Item GUINEA_PIG_SPAWN_EGG = registerItem("guinea_pig_spawn_egg",
             new SpawnEggItem(ModEntities.GUINEA_PIG, 0xeeeee4, 0xeab676, new Item.Settings()));
 
@@ -27,8 +27,8 @@ public class ModItems {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.add(DROPPINGS);
-            entries.add(EMPTY_CRATE);
-            entries.add(FULL_CRATE);
+            entries.add(EMPTY_CARRIER);
+            entries.add(FULL_CARRIER);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
             entries.add(GUINEA_PIG_SPAWN_EGG);

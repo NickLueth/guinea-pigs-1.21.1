@@ -20,19 +20,6 @@ import net.nitwit.guinea_pigs.entity.ModEntities;
 import org.jetbrains.annotations.Nullable;
 
 
-
-/* TODO
-- Make tameable
-- Add animations
-- Add entity
-- Add spawn locations
-- Add spawn egg
-- Add variants
-- Set children
-*/
-
-
-
 public class GuineaPigEntity extends AnimalEntity{
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
@@ -64,8 +51,8 @@ public class GuineaPigEntity extends AnimalEntity{
 
     public static DefaultAttributeContainer.Builder createAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, .5)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 5)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, .3f)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20);
     }
 
