@@ -15,7 +15,7 @@ public class GuineaPigRenderer extends MobEntityRenderer<GuineaPigEntity, Guinea
 
     @Override
     public Identifier getTexture(GuineaPigEntity entity) {
-        return Identifier.of(GuineaPigs.MOD_ID, "textures/entity/acorn_squash.png");
+        return Identifier.of(GuineaPigs.MOD_ID, "textures/entity/guinea_pig/acorn_squash.png");
     }
 
     public void render(GuineaPigEntity livingEntity, float f, float g, MatrixStack matrixStack,

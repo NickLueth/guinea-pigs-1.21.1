@@ -74,6 +74,6 @@ public class GuineaPigModel<T extends GuineaPigEntity> extends SinglePartEntityM
 
     @Override
     public ModelPart getPart() {
-        return null;
+        return guineaPig;
     }
 }
