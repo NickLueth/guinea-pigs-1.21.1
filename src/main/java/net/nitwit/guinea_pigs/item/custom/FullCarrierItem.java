@@ -1,5 +1,5 @@
 package net.nitwit.guinea_pigs.item.custom;
 
-public class EmptyCrateItem {
+public class FullCarrierItem {
     // Finish after implementing guinea pigs entities
 }

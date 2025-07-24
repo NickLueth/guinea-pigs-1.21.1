@@ -5,13 +5,13 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Model;
+import net.minecraft.data.client.Models;
 import net.minecraft.util.Identifier;
 import net.nitwit.guinea_pigs.item.ModItems;
 
 import java.util.Optional;
 
 public class ModModelProvider extends FabricModelProvider {
-
     public ModModelProvider(FabricDataOutput output) {
         super(output);
     }

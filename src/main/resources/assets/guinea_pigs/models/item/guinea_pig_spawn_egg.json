@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "guinea_pigs:item/template_spawn_egg"
-  }
-}
