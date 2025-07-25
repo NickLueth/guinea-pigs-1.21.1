@@ -117,68 +117,6 @@ public class GuineaPigAnimations {
                 ))
                 .build();
 
-        public static final Animation ANIM_LANDING = Animation.Builder.create(0.25F)
-                .addBoneAnimation("Body", new Transformation(Transformation.Targets.ROTATE,
-                        new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.125F, AnimationHelper.createRotationalVector(2.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.25F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("Body", new Transformation(Transformation.Targets.TRANSLATE,
-                        new Keyframe(0.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.25F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("Head", new Transformation(Transformation.Targets.ROTATE,
-                        new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.125F, AnimationHelper.createRotationalVector(8.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.25F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("Head", new Transformation(Transformation.Targets.TRANSLATE,
-                        new Keyframe(0.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.125F, AnimationHelper.createTranslationalVector(0.0F, -0.2F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.25F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .build();
-
-        public static final Animation ANIM_FALLING = Animation.Builder.create(0.5F)
-                .addBoneAnimation("GuineaPig", new Transformation(Transformation.Targets.ROTATE,
-                        new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.25F, AnimationHelper.createRotationalVector(-50.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.5F, AnimationHelper.createRotationalVector(-50.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("GuineaPig", new Transformation(Transformation.Targets.TRANSLATE,
-                        new Keyframe(0.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("Head", new Transformation(Transformation.Targets.ROTATE,
-                        new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.25F, AnimationHelper.createRotationalVector(29.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.5F, AnimationHelper.createRotationalVector(29.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("Head", new Transformation(Transformation.Targets.TRANSLATE,
-                        new Keyframe(0.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("FrontLeft", new Transformation(Transformation.Targets.ROTATE,
-                        new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.25F, AnimationHelper.createRotationalVector(0.0F, 0.0F, -30.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.5F, AnimationHelper.createRotationalVector(0.0F, 0.0F, -30.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("FrontLeft", new Transformation(Transformation.Targets.TRANSLATE,
-                        new Keyframe(0.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("FrontRight", new Transformation(Transformation.Targets.ROTATE,
-                        new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.25F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 30.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.5F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 30.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("BackLegs", new Transformation(Transformation.Targets.ROTATE,
-                        new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.25F, AnimationHelper.createRotationalVector(60.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                        new Keyframe(0.5F, AnimationHelper.createRotationalVector(60.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .addBoneAnimation("BackLegs", new Transformation(Transformation.Targets.TRANSLATE,
-                        new Keyframe(0.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-                ))
-                .build();
-
         public static final Animation ANIM_SITTING = Animation.Builder.create(0.5F)
                 .addBoneAnimation("Body", new Transformation(Transformation.Targets.ROTATE,
                         new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),

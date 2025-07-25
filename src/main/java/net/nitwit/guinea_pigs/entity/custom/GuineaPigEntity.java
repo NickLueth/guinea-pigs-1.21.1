@@ -1,7 +1,5 @@
 package net.nitwit.guinea_pigs.entity.custom;
 
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -43,6 +41,9 @@ public class GuineaPigEntity extends TameableEntity {
 
     private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
             DataTracker.registerData(GuineaPigEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Boolean> SITTING =
+            DataTracker.registerData(GuineaPigEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
 
     public GuineaPigEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
@@ -57,8 +58,7 @@ public class GuineaPigEntity extends TameableEntity {
         this.goalSelector.add(3, new SitGoal(this));
         this.goalSelector.add(4, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
         this.goalSelector.add(5, new AnimalMateGoal(this, 1.25));
-        this.goalSelector.add(6, new TemptGoal(this, 1.25, Ingredient.ofItems(Items.DANDELION), false));
-        this.goalSelector.add(6, new TemptGoal(this, 1.25, Ingredient.ofItems(Items.WHEAT), false));
+        this.goalSelector.add(6, new TemptGoal(this, 1.25, Ingredient.ofItems(Items.DANDELION, Items.WHEAT), false));
 
         this.goalSelector.add(7, new FollowParentGoal(this, 1.25));
 
@@ -84,11 +84,14 @@ public class GuineaPigEntity extends TameableEntity {
         } else {
             --this.idleAnimationTimeout;
         }
-        if (this.isTamed() && this.isInSittingPose() && !this.sittingAnimationState.isRunning()) {
-            this.sittingAnimationState.start(this.age);
-        } else if (this.isTamed() && !this.isInSittingPose() && this.sittingAnimationState.isRunning()) {
-            this.sittingAnimationState.stop();
+        if (this.isTamed()) {
+            if (this.isInSittingPose()) {
+                this.sittingAnimationState.startIfNotRunning(this.age);
+            } else {
+                this.sittingAnimationState.stop();
+            }
         }
+
     }
 
     @Override
@@ -122,6 +125,7 @@ public class GuineaPigEntity extends TameableEntity {
         }
     }
 
+    @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!this.getWorld().isClient || this.isBaby() && (this.isBreedingItem(itemStack) || itemStack.isOf(Items.WHEAT))) {
@@ -129,6 +133,10 @@ public class GuineaPigEntity extends TameableEntity {
                 if (itemStack.isOf(Items.WHEAT) && this.getHealth() < this.getMaxHealth()) {
                     itemStack.decrementUnlessCreative(1, player);
                     this.heal(2.0F);
+
+                    if (!this.getWorld().isClient()) {
+                        this.getWorld().sendEntityStatus(this, EntityStatuses.ADD_VILLAGER_HAPPY_PARTICLES);
+                    }
                     return ActionResult.success(this.getWorld().isClient());
                 }
             } else if (!this.isTamed() && itemStack.isOf(Items.WHEAT)) {
@@ -152,6 +160,27 @@ public class GuineaPigEntity extends TameableEntity {
             return bl ? ActionResult.CONSUME : ActionResult.PASS;
         }
     }
+
+    @Override
+    public void handleStatus(byte status) {
+        if (status == EntityStatuses.ADD_VILLAGER_HAPPY_PARTICLES) {
+            for (int i = 0; i < 7; ++i) {
+                double dx = this.random.nextGaussian() * 0.02D;
+                double dy = this.random.nextGaussian() * 0.02D;
+                double dz = this.random.nextGaussian() * 0.02D;
+                this.getWorld().addParticle(
+                        ParticleTypes.HAPPY_VILLAGER,
+                        this.getParticleX(1.0D),
+                        this.getRandomBodyY() + 0.5D,
+                        this.getParticleZ(1.0D),
+                        dx, dy, dz
+                );
+            }
+        } else {
+            super.handleStatus(status);
+        }
+    }
+
 
     @Override
     public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
@@ -190,6 +219,18 @@ public class GuineaPigEntity extends TameableEntity {
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
         builder.add(DATA_ID_TYPE_VARIANT, 9);
+        builder.add(SITTING, false); // default not sitting
+    }
+
+    @Override
+    public void setSitting(boolean sitting) {
+        super.setSitting(sitting); // sets sit goal status
+        this.dataTracker.set(SITTING, sitting);
+        this.setInSittingPose(sitting);
+    }
+
+    public boolean isSitting() {
+        return this.dataTracker.get(SITTING);
     }
 
     public GuineaPigVariant getVariant() {
@@ -208,12 +249,15 @@ public class GuineaPigEntity extends TameableEntity {
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putInt("Variant", this.getTypeVariant());
+        nbt.putBoolean("IsSitting", this.isSitting());
     }
 
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         this.dataTracker.set(DATA_ID_TYPE_VARIANT, nbt.getInt("Variant"));
+        this.setSitting(nbt.getBoolean("IsSitting"));
+
     }
 
     @Override
