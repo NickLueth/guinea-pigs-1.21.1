@@ -57,6 +57,7 @@ public class GuineaPigModel<T extends GuineaPigEntity> extends SinglePartEntityM
 
         this.animateMovement(GuineaPigAnimations.ANIM_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.updateAnimation(entity.idleAnimationState, GuineaPigAnimations.ANIM_IDLE, ageInTicks, 1F);
+        this.updateAnimation(entity.sittingAnimationState, GuineaPigAnimations.ANIM_SITTING, ageInTicks, 1F);
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {

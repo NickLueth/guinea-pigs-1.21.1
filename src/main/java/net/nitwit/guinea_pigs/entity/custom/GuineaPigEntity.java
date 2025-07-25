@@ -18,6 +18,7 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
@@ -37,6 +38,7 @@ import org.jetbrains.annotations.Nullable;
 public class GuineaPigEntity extends TameableEntity {
     public int poopTime = this.random.nextInt(2000) + 2000;
     public final AnimationState idleAnimationState = new AnimationState();
+    public final AnimationState sittingAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
     private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
@@ -82,6 +84,11 @@ public class GuineaPigEntity extends TameableEntity {
         } else {
             --this.idleAnimationTimeout;
         }
+        if (this.isTamed() && this.isInSittingPose() && !this.sittingAnimationState.isRunning()) {
+            this.sittingAnimationState.start(this.age);
+        } else if (this.isTamed() && !this.isInSittingPose() && this.sittingAnimationState.isRunning()) {
+            this.sittingAnimationState.stop();
+        }
     }
 
     @Override
@@ -117,16 +124,14 @@ public class GuineaPigEntity extends TameableEntity {
 
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (!this.getWorld().isClient || this.isBaby() && this.isBreedingItem(itemStack)) {
+        if (!this.getWorld().isClient || this.isBaby() && (this.isBreedingItem(itemStack) || itemStack.isOf(Items.WHEAT))) {
             if (this.isTamed()) {
-                if (this.isBreedingItem(itemStack) && this.getHealth() < this.getMaxHealth()) {
+                if (itemStack.isOf(Items.WHEAT) && this.getHealth() < this.getMaxHealth()) {
                     itemStack.decrementUnlessCreative(1, player);
-                    FoodComponent foodComponent = itemStack.get(DataComponentTypes.FOOD);
-                    float f = foodComponent != null ? foodComponent.nutrition() : 1.0F;
-                    this.heal(2.0F * f);
+                    this.heal(2.0F);
                     return ActionResult.success(this.getWorld().isClient());
                 }
-            } else if (itemStack.isOf(Items.WHEAT)) {
+            } else if (!this.isTamed() && itemStack.isOf(Items.WHEAT)) {
                 itemStack.decrementUnlessCreative(1, player);
                 this.tryTame(player);
                 return ActionResult.SUCCESS;
