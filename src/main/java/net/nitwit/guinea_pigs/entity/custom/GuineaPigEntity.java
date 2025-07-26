@@ -10,7 +10,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.MobEntity;
-// import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,7 +33,7 @@ import net.nitwit.guinea_pigs.item.ModItems;
 import net.nitwit.guinea_pigs.sound.ModSounds;
 import org.jetbrains.annotations.Nullable;
 
-//public class GuineaPigEntity extends AnimalEntity{
+
 public class GuineaPigEntity extends TameableEntity {
     public int poopTime = this.random.nextInt(2000) + 2000;
     public final AnimationState idleAnimationState = new AnimationState();
@@ -95,7 +94,6 @@ public class GuineaPigEntity extends TameableEntity {
                 this.sittingAnimationState.stop();
             }
         }
-
     }
 
     @Override
