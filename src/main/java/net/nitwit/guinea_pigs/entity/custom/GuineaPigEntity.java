@@ -19,6 +19,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -30,6 +31,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.nitwit.guinea_pigs.entity.ModEntities;
 import net.nitwit.guinea_pigs.item.ModItems;
+import net.nitwit.guinea_pigs.sound.ModSounds;
 import org.jetbrains.annotations.Nullable;
 
 //public class GuineaPigEntity extends AnimalEntity{
@@ -38,6 +40,8 @@ public class GuineaPigEntity extends TameableEntity {
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState sittingAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+    private int ambientSoundCooldown = this.random.nextBetween(100, 300);
+
 
     private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
             DataTracker.registerData(GuineaPigEntity.class, TrackedDataHandlerRegistry.INTEGER);
@@ -97,16 +101,25 @@ public class GuineaPigEntity extends TameableEntity {
     @Override
     public void tick(){
         super.tick();
+
         if (this.getWorld().isClient()) {
             this.setupAnimationStates();
-        }
-        if (!this.getWorld().isClient && this.isAlive() && --this.poopTime <= 0) {
-            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-            this.dropItem(ModItems.DROPPINGS);
-            this.emitGameEvent(GameEvent.ENTITY_PLACE);
-            this.poopTime = this.random.nextInt(2000) + 2000;
+        } else {
+            if (this.isAlive() && --this.poopTime <= 0) {
+                this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+                this.dropItem(ModItems.DROPPINGS);
+                this.emitGameEvent(GameEvent.ENTITY_PLACE);
+                this.poopTime = this.random.nextInt(2000) + 2000;
+            }
+
+            // Chutting ambient control
+            if (--ambientSoundCooldown <= 0 && this.isAlive()) {
+                this.playSound(this.getAmbientSound(), this.getSoundVolume(), this.getSoundPitch());
+                ambientSoundCooldown = this.random.nextBetween(150, 300); // 7.5–15 seconds
+            }
         }
     }
+
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
@@ -128,22 +141,33 @@ public class GuineaPigEntity extends TameableEntity {
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
+        boolean consumed = false;
+
         if (!this.getWorld().isClient || this.isBaby() && (this.isBreedingItem(itemStack) || itemStack.isOf(Items.WHEAT))) {
-            if (this.isTamed()) {
-                if (itemStack.isOf(Items.WHEAT) && this.getHealth() < this.getMaxHealth()) {
+            if (itemStack.isOf(Items.WHEAT)) {
+                if (this.isTamed() && this.getHealth() < this.getMaxHealth()) {
                     itemStack.decrementUnlessCreative(1, player);
                     this.heal(2.0F);
+                    consumed = true;
 
                     if (!this.getWorld().isClient()) {
                         this.getWorld().sendEntityStatus(this, EntityStatuses.ADD_VILLAGER_HAPPY_PARTICLES);
                     }
-                    return ActionResult.success(this.getWorld().isClient());
+                } else if (!this.isTamed()) {
+                    itemStack.decrementUnlessCreative(1, player);
+                    this.tryTame(player);
+                    consumed = true;
                 }
-            } else if (!this.isTamed() && itemStack.isOf(Items.WHEAT)) {
+
+                if (consumed) this.playSound(ModSounds.WHEEK);
+                return ActionResult.success(this.getWorld().isClient());
+            } else if (itemStack.isOf(Items.DANDELION)) {
                 itemStack.decrementUnlessCreative(1, player);
-                this.tryTame(player);
+                this.lovePlayer(player); // triggers breeding mode
+                this.playSound(ModSounds.RUMBLING);
                 return ActionResult.SUCCESS;
             }
+
             ActionResult actionResult = super.interactMob(player, hand);
             if (!actionResult.isAccepted() && this.isOwner(player)) {
                 this.setSitting(!this.isSitting());
@@ -188,6 +212,7 @@ public class GuineaPigEntity extends TameableEntity {
         GuineaPigVariant variant = Util.getRandom(GuineaPigVariant.values(), this.random);
         assert baby != null;
         baby.setVariant(variant);
+        this.playSound(ModSounds.RUMBLING);
         return baby;
     }
 
@@ -214,7 +239,19 @@ public class GuineaPigEntity extends TameableEntity {
         }
     }
 
-    // Variant
+    // Sounds
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.CHUTTING;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.SCREAM;
+    }
+
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);

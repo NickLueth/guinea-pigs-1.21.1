@@ -1,0 +1,26 @@
+{
+  "chutting": {
+    "subtitle": "sounds.guinea_pigs.chutting",
+    "sounds": [
+      "guinea_pigs:chutting"
+    ]
+  },
+  "rumbling": {
+    "subtitle": "sounds.guinea_pigs.rumbling",
+    "sounds": [
+      "guinea_pigs:rumbling"
+    ]
+  },
+  "scream": {
+    "subtitle": "sounds.guinea_pigs.scream",
+    "sounds": [
+      "guinea_pigs:scream"
+    ]
+  },
+  "wheek": {
+    "subtitle": "sounds.guinea_pigs.wheek",
+    "sounds": [
+      "guinea_pigs:wheek"
+    ]
+  }
+}
