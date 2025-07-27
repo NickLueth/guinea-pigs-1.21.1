@@ -13,6 +13,18 @@ Bring adorable, curious guinea pigs into your Minecraft world.
 
 ---
 
+## 🧠 How the Mod Works
+
+Here’s what to expect when you encounter guinea pigs in your world:
+
+- 🌲 **Natural Spawns:** Guinea pigs spawn naturally in all **forest biomes**.
+- 💩 **Droppings:** They leave behind **droppings** that function just like **bone meal** — use them to fertilize plants!
+- 🌾 **Taming & Healing:** Use **wheat** to **tame** a wild guinea pig or **heal** a wounded one.
+- 🌼 **Breeding:** Feed two guinea pigs a **dandelion** each to **breed** them.
+- 🪑 **Sitting Behavior:** Right-click a **tamed** guinea pig to toggle **sit** mode.
+
+---
+
 ## 🐹 About the Original Mod
 
 **Guinea Pigs Mod** is based on the original **[Guinea Pig Variety](https://www.curseforge.com/minecraft/mc-mods/guinea-pig-variety)** by **Fuths**.
