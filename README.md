@@ -1,4 +1,4 @@
-# Guinea Pigs Mod (1.0.0) - Fabric Edition (1.21.1)
+# Guinea Pigs Mod (1.1.0) - Fabric Edition (1.21.1)
 
 Welcome to **Guinea Pigs Mod**, a continuation and reimagining of the original **Guinea Pig Variety** mod — now updated for **Minecraft 1.21.1** and running on the **Fabric** mod loader!
 
@@ -19,7 +19,15 @@ Here’s what to expect when you encounter guinea pigs in your world:
 
 - 🌲 **Natural Spawns:** Guinea pigs spawn naturally in all **forest biomes**.
 - 💩 **Droppings:** They leave behind **droppings** that function just like **bone meal** — use them to fertilize plants!
-- 🌾 **Taming & Healing:** Use **wheat** to **tame** a wild guinea pig or **heal** a wounded one.
+- 🌾 **Taming & Healing:** Use any of their **favorite foods** to **tame** a wild guinea pig or **heal** a wounded one.
+  - Wheat
+  - Apples
+  - Carrots
+  - Sweet Berries
+  - Golden Carrots
+  - Golden Apples
+  - Enchanted Golden Apples
+  - Melon Slices
 - 🌼 **Breeding:** Feed two guinea pigs a **dandelion** each to **breed** them.
 - 🪑 **Sitting Behavior:** Right-click a **tamed** guinea pig to toggle **sit** mode.
 

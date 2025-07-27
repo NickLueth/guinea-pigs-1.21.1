@@ -41,7 +41,19 @@ public class GuineaPigEntity extends TameableEntity {
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState sittingAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
-    private int ambientSoundCooldown = this.random.nextBetween(100, 300);
+    private int ambientSoundCooldown = this.random.nextBetween(200, 350);
+    private static final Ingredient FAVORITE_FOODS = Ingredient.ofItems(
+            Items.DANDELION,
+            Items.WHEAT,
+            Items.APPLE,
+            Items.CARROT,
+            Items.SWEET_BERRIES,
+            Items.GOLDEN_CARROT,
+            Items.GOLDEN_APPLE,
+            Items.ENCHANTED_GOLDEN_APPLE,
+            Items.MELON_SLICE
+    );
+
 
     // Tracked data: Variant and Sitting status
     private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
@@ -62,7 +74,7 @@ public class GuineaPigEntity extends TameableEntity {
         this.goalSelector.add(3, new SitGoal(this));
         this.goalSelector.add(4, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F));
         this.goalSelector.add(5, new AnimalMateGoal(this, 1.25));
-        this.goalSelector.add(6, new TemptGoal(this, 1.25, Ingredient.ofItems(Items.DANDELION, Items.WHEAT), false));
+        this.goalSelector.add(6, new TemptGoal(this, 1.25, FAVORITE_FOODS, false));
         this.goalSelector.add(7, new FollowParentGoal(this, 1.25));
         this.goalSelector.add(8, new WanderAroundGoal(this, 1));
         this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0));
@@ -116,7 +128,7 @@ public class GuineaPigEntity extends TameableEntity {
             // Chutting ambient sound (periodic)
             if (--ambientSoundCooldown <= 0 && this.isAlive()) {
                 this.playSound(this.getAmbientSound(), this.getSoundVolume(), this.getSoundPitch());
-                ambientSoundCooldown = this.random.nextBetween(150, 300);
+                ambientSoundCooldown = this.random.nextBetween(200, 350);
             }
         }
     }
@@ -127,7 +139,7 @@ public class GuineaPigEntity extends TameableEntity {
         return stack.isOf(Items.DANDELION);
     }
 
-    // Taming logic (33% chance on feeding wheat)
+    // Taming logic (33% chance on feeding favorite foods)
     private void tryTame(PlayerEntity player) {
         if (this.random.nextInt(3) == 0) {
             this.setOwner(player);
@@ -146,9 +158,9 @@ public class GuineaPigEntity extends TameableEntity {
         ItemStack itemStack = player.getStackInHand(hand);
         boolean consumed = false;
 
-        if (!this.getWorld().isClient || this.isBaby() && (this.isBreedingItem(itemStack) || itemStack.isOf(Items.WHEAT))) {
-            if (itemStack.isOf(Items.WHEAT)) {
-                // Heal or tame with wheat
+        if (!this.getWorld().isClient || this.isBaby() && (this.isBreedingItem(itemStack) || FAVORITE_FOODS.test(itemStack))) {
+            if (!itemStack.isOf(Items.DANDELION) && FAVORITE_FOODS.test(itemStack)) {
+                // Heal or tame with foods
                 if (this.isTamed() && this.getHealth() < this.getMaxHealth()) {
                     itemStack.decrementUnlessCreative(1, player);
                     this.heal(2.0F);
@@ -185,7 +197,7 @@ public class GuineaPigEntity extends TameableEntity {
 
             return super.interactMob(player, hand);
         } else {
-            boolean bl = this.isOwner(player) || this.isTamed() || itemStack.isOf(Items.WHEAT) && !this.isTamed();
+            boolean bl = this.isOwner(player) || this.isTamed() || FAVORITE_FOODS.test(itemStack) && !this.isTamed();
             return bl ? ActionResult.CONSUME : ActionResult.PASS;
         }
     }
