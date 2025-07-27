@@ -1,4 +1,4 @@
-# Guinea Pigs Mod (1.1.0) - Fabric Edition (1.21.1)
+# Guinea Pigs Mod (1.1.1) - Fabric Edition (1.21.1)
 
 Welcome to **Guinea Pigs Mod**, a continuation and reimagining of the original **Guinea Pig Variety** mod — now updated for **Minecraft 1.21.1** and running on the **Fabric** mod loader!
 
@@ -23,11 +23,12 @@ Here’s what to expect when you encounter guinea pigs in your world:
   - Wheat
   - Apples
   - Carrots
+  - Melon Slices
   - Sweet Berries
   - Golden Carrots
   - Golden Apples
   - Enchanted Golden Apples
-  - Melon Slices
+  - Glistering Melon Slices
 - 🌼 **Breeding:** Feed two guinea pigs a **dandelion** each to **breed** them.
 - 🪑 **Sitting Behavior:** Right-click a **tamed** guinea pig to toggle **sit** mode.
 

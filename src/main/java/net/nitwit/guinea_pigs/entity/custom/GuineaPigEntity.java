@@ -47,11 +47,12 @@ public class GuineaPigEntity extends TameableEntity {
             Items.WHEAT,
             Items.APPLE,
             Items.CARROT,
+            Items.MELON_SLICE,
             Items.SWEET_BERRIES,
             Items.GOLDEN_CARROT,
             Items.GOLDEN_APPLE,
             Items.ENCHANTED_GOLDEN_APPLE,
-            Items.MELON_SLICE
+            Items.GLISTERING_MELON_SLICE
     );
 
 
