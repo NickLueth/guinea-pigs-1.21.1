@@ -67,13 +67,6 @@ Open an [issue](#), start a [discussion](#), or reach out — your input is alwa
 
 ---
 
-## 📄 License
-
-This mod is licensed under the [MIT License](./LICENSE).  
-Original assets, concept, and designs credited to **Fuths**, reused here with respect and attribution.
-
----
-
 ## 🙌 Credits
 
 - **Original Creator:** [Fuths](https://www.curseforge.com/members/fuths)
