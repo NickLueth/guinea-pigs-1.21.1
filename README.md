@@ -9,6 +9,7 @@ Bring adorable, curious guinea pigs into your Minecraft world.
 ## 🆕 What's New
 
 - 🔄 **Updated from 1.20.1 Forge → 1.21.1 Fabric**
+- 🎞️ New animations
 - 🛠️ Improved compatibility with modern Fabric-based modpacks
 
 ---
