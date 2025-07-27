@@ -1,15 +1,14 @@
-# Guinea Pigs Mod (In Development) - Fabric Edition (1.21.1)
+# Guinea Pigs Mod (1.0.0) - Fabric Edition (1.21.1)
 
 Welcome to **Guinea Pigs Mod**, a continuation and reimagining of the original **Guinea Pig Variety** mod — now updated for **Minecraft 1.21.1** and running on the **Fabric** mod loader!
 
-Bring adorable, curious guinea pigs into your Minecraft world, complete with new features, functional items, and more variety to come.
+Bring adorable, curious guinea pigs into your Minecraft world.
 
 ---
 
 ## 🆕 What's New
 
 - 🔄 **Updated from 1.20.1 Forge → 1.21.1 Fabric**
-- 📦 **Functional guinea pig crates** for storing and transporting guinea pigs
 - 🛠️ Improved compatibility with modern Fabric-based modpacks
 
 ---
@@ -37,15 +36,6 @@ Bring adorable, curious guinea pigs into your Minecraft world, complete with new
 - **Minecraft 1.21.1**
 - **Fabric Loader**
 - **Fabric API**
-
----
-
-## 📌 Planned Features
-
-- ✅ Functional guinea pig carriers
-- 🐹 Additional guinea pig breeds and patterns
-- 🎽 Cosmetic accessories like bows, hats, and sweaters
-- 🎶 New sounds and squeaks
 
 ---
 
