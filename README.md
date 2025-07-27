@@ -63,7 +63,7 @@ Here’s what to expect when you encounter guinea pigs in your world:
 ## 💬 Feedback & Contributions
 
 Got ideas? Found a bug?
-Open an [issue](#), start a [discussion](#), or reach out — your input is always welcome!
+Open an [issue](https://github.com/NickLueth/guinea-pigs-1.21.1/issues) or reach out — your input is always welcome!
 
 ---
 
