@@ -1,6 +1,6 @@
-# Guinea Pigs Mod (1.1.1) - Fabric Edition (1.21.1)
+# Tameable Guinea Pigs (1.1.1) - Fabric Edition (1.21.1)
 
-Welcome to **Guinea Pigs Mod**, a continuation and reimagining of the original **Guinea Pig Variety** mod — now updated for **Minecraft 1.21.1** and running on the **Fabric** mod loader!
+Welcome to the **Tameable Guinea Pigs** mod, a continuation and reimagining of the original **Guinea Pig Variety** mod — now updated for **Minecraft 1.21.1** and running on the **Fabric** mod loader!
 
 Bring adorable, curious guinea pigs into your Minecraft world.
 
