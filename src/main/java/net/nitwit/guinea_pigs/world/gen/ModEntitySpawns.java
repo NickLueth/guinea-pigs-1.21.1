@@ -24,7 +24,7 @@ public class ModEntitySpawns {
                         BiomeKeys.TAIGA),
                 SpawnGroup.CREATURE,  // Spawn group (passive creatures)
                 ModEntities.GUINEA_PIG,  // The entity to spawn
-                35,  // Spawn weight (higher = more common)
+                8,  // Spawn weight (higher = more common)
                 2,   // Minimum group size
                 4    // Maximum group size
         );
